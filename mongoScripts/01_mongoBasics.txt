@@ -1,0 +1,24 @@
+{
+    "nombre":"valor",
+    "apellido":"otro valor",
+    "edad": 30
+    "precio": 300.25,
+    "enOferta": true,
+    "arreglo": ["uno","dos","tres","cuatro"],
+    "arregloDoc":[
+                    {"elemento":1,"valor":"hola"},
+                    {"elemento":2,"valor":"adios"}
+                 ],
+    "unDocumento":{"direccion":"Un lugar",
+                   "telefono":"12301230"}
+}
+
+
+{"equipo":"team1", "miembros":2}
+{"equipo":"team2", "miembros":3}
+ {  "equipo":"team3",
+    "miembros":2,
+    "memberData":["Fulano","Mengano","Sutano"]
+ }
+
+{}
