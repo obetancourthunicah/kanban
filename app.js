@@ -4,9 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
 
 function getApp(db){
     var app = express();
@@ -24,9 +24,43 @@ function getApp(db){
     app.use(require('less-middleware')(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'public')));
 
-    app.use('/', routes);
-    app.use('/users', users);
+    //Manejador de sesiones
+    var store = new MongoDBStore(
+      {
+        uri: 'mongodb://localhost:27017/sessions',
+        collection: 'kanbanssn'
+      });
 
+    // Catch errors
+    store.on('error', function(error) {
+      assert.ifError(error);
+      assert.ok(false);
+    });
+
+    app.use(require('express-session')({
+      secret: 'the only truth about life is death',
+      resave: true,
+      saveUninitialized: true,
+      cookie: {
+        maxAge:1000*60*60*3 // 3 horas
+        //maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+        //maxAge: 1000 * 60 * 60 * 24 * 30 // 1 month
+        //maxAge: 1000 * 60 * 60 * 24 * 265 // 1 year
+      },
+      store: store
+    }));
+    //se injecta la base de datos a las rutas
+    var routes = require('./routes/index')(db);
+    var users = require('./routes/users')(db);
+    var api = require('./routes/api')(db);
+    var mob = require('./routes/mob')(db);
+    //Manejo de Rutas
+    app.use('/', routes);
+    app.use('/mobile', mob);
+
+    app.use('/users', users);
+    app.use('/api', users);
+    
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
       var err = new Error('Not Found');
