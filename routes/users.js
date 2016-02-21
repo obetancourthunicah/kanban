@@ -3,15 +3,19 @@ var router = express.Router();
 module.exports = function(db) {
     router.route('/login')
         .get(function(req, res) {
-            res.send("Trying to Login");
+            res.render('login',{});
         })
         .post(function(req, res) {
             res.send("Post Trying to login");
         });
 
-    router.get('/sigin', function(req, res) {
-        res.send("Trying to Login");
-    });
+    router.route('/signin')
+        .get(function(req, res) {
+            res.render('signup',{});
+        })
+        .post(function(req,res){
+
+        });
 
     //Esta ruta es la que permite verificar que el sistema esté arriba
     // y funcionando adecuadamente.
