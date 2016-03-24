@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var validator = require('./validator.js');
+var dummyData = require('../models/dummyData.js');
 module.exports = function(db) {
 
     //HTTP STATUS CHEAT
@@ -30,19 +32,22 @@ module.exports = function(db) {
 
 
     //Private API
-    router.use(function(req,res,next){
+    /*router.use(function(req,res,next){
         if(req.session.logged){
             next();
         }else{
             res.status(401).json({"error":"No puede usar el api sin estar autorizado"});
         }
+    });*/
+    console.log(dummyData);
+    router.get('/getappstate',validator,function(req,res,next){
+        res.status(200).json(dummyData.getAppState());
     });
 
-    //from here on
-
-    router.get('/', function(req, res, next) {
-        res.status(501).json({"error":"Not Implemented"});
+    router.get('/getcurrentproyect',validator,function(req,res,next){
+        res.status(200).json(dummyData.getProyectData());
     });
+
 
     return router;
 };

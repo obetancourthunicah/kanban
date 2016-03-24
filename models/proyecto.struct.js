@@ -10,21 +10,25 @@ module.exports = {
                 "codigo": "",
                 "nombre": ""
             },
-            "categoria": ""
+            "categoria": "",
+            "tarjetasNumero":0,
+            "tarjetas":[]
         };
     },
     paso: function(){
         return {
             "codigo":0,
             "orden":0,
-            "nombre":""
+            "nombre":"",
+            "color":""
         };
     },
     colaborador: function(){
         return {
             "codigo":"",
             "nombre":"",
-            "tipo":""
+            "tipo":"",
+            "iniciales":""
         };
     }
 };

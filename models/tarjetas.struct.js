@@ -3,10 +3,8 @@ module.exports = {
         return {
             "titulo":"",
             "descripcion":"",
-            "proyecto":{"codigo":"","nombre":""},
             "paso":"",
             "fechaCambio":0,
-            "tipo":"",
             "responsable":{"codigo":"","nombre":""},
             "tareas":[],
             "bitacora":[]

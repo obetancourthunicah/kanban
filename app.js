@@ -50,17 +50,25 @@ function getApp(db){
       store: store
     }));
     //se injecta la base de datos a las rutas
-    var routes = require('./routes/index')(db);
+    var routes = require('./routes/desktop')(db);
     var users = require('./routes/users')(db);
     var api = require('./routes/api')(db);
     var mob = require('./routes/mob')(db);
+
+
+    if(app.get('env')==="development"){
+        app.use(function(req,res,next){
+            req.session.islogged = "true";
+            next();
+        });
+    }
     //Manejo de Rutas
+
     app.use('/', routes);
     app.use('/mobile', mob);
-
+    app.use('/api', api);
     app.use('/users', users);
-    app.use('/api', users);
-    
+
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
       var err = new Error('Not Found');
