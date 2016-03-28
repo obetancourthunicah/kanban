@@ -1,9 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+module.exports = function(db) {
+    router.route('/login')
+        .get(function(req, res) {
+            res.render('login',{});
+        })
+        .post(function(req, res) {
+            res.send("Post Trying to login");
+        });
 
-module.exports = router;
+    router.route('/signin')
+        .get(function(req, res) {
+            res.render('signup',{});
+        })
+        .post(function(req,res){
+
+        });
+
+    return router;
+};
