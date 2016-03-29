@@ -48,6 +48,9 @@ module.exports = function(db) {
         res.status(200).json(dummyData.getProyectData());
     });
 
-
+    router.get('/obtenerproyectos',function(req,res,next){
+      var proyectos = [{"nombre":"Proyecto 1"},{"nombre":"Proyecto 2"}];
+      res.json(proyectos);
+    });
     return router;
 };

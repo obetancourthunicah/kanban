@@ -9,58 +9,23 @@
     <link rel="stylesheet" href="/css/jquery.mobile.theme.min.css"  />
     <script src="/js/jquery.min.js"></script>
     <script src="/js/jquery.mobile.min.js"></script>
+
   </head>
   <body>
-    <div data-role="page" id="first">
+    <div data-role="page" id="page_proyectList">
       <div data-role="header" data-position="fixed">
-        <h4>Kanban</h4>
+        <h3>Proyectos</h3>
       </div>
-      <div data-role="content" class="ui-content">
+      <div class="ui-content" role="main">
+        <ul data-role="listview" id="proyectsListView">
 
+        </ul>
       </div>
       <div data-role="footer" data-position="fixed">
-        <div data-role="navbar">
-          <ul>
-            <li>
-              <a href="#first">Primero</a>
-            </li>
-            <li>
-              <a href="#second">Segundo</a>
-            </li>
-          </ul>
-        </div>
+        <h4>Derechos 2016</h4>
       </div>
     </div>
 
-    <div data-role="page" id="second">
-      <div data-role="header" data-position="fixed">
-        <h4>Kanban 2</h4>
-      </div>
-      <div data-role="content" class="ui-content">
-          <ul data-role="listview">
-            <li>
-              <a href>Primera Tarea</a>
-            </li>
-            <li>
-              <a href>Segunda Tarea</a>
-            </li>
-            <li>
-              <a href>Tercera Tarea</a>
-            </li>
-          </ul>
-      </div>
-      <div data-role="footer" data-position="fixed">
-        <div data-role="navbar">
-          <ul>
-            <li>
-              <a href="#first">Primero</a>
-            </li>
-            <li>
-              <a href="#second">Segundo</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <script src="/js/appclient.js"></script>
   </body>
 </html>
