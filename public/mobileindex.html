@@ -22,10 +22,56 @@
         </ul>
       </div>
       <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+          <ul>
+            <li>
+              <a href="#page_proyectList">Inicio</a>
+            </li>
+            <li>
+              <a href="#page_newUser">Registrar Nuevo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div data-role="page" id="page_proyectDetail">
+      <div data-role="header" data-position="fixed"
+      data-add-back-btn="true">
+        <h3>Proyecto</h3>
+      </div>
+      <div class="ui-content" role="main"
+       id="proyectDetail">
+
+      </div>
+      <div data-role="footer" data-position="fixed">
         <h4>Derechos 2016</h4>
       </div>
     </div>
 
+    <div data-role="page" id="page_newUser">
+      <div data-role="header" data-position="fixed"
+      data-add-back-btn="true">
+        <h3>Crear Usuario</h3>
+      </div>
+      <div class="ui-content" role="main">
+          <form>
+            <input type="email" name="txtEmail"
+            placeholder="tucorre@electroni.co"/>
+            <input type="password" name="txtPswd"
+            placeholder="8 Alphanumericos" />
+            <input type="button" value="Registrar" id="btnNewUser"/>
+            <div class="msgs">
+
+            </div>
+
+          </div>
+          </form>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <h4>Derechos 2016</h4>
+      </div>
+    </div>
     <script src="/js/appclient.js"></script>
   </body>
 </html>

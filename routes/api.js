@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var validator = require('./validator.js');
 var dummyData = require('../models/dummyData.js');
+var Proyectos = require('../models/proyectos.model.js');
 module.exports = function(db) {
 
     //HTTP STATUS CHEAT
@@ -48,9 +49,21 @@ module.exports = function(db) {
         res.status(200).json(dummyData.getProyectData());
     });
 
+    var proyectos = new Proyectos(db);
     router.get('/obtenerproyectos',function(req,res,next){
-      var proyectos = [{"nombre":"Proyecto 1"},{"nombre":"Proyecto 2"}];
-      res.json(proyectos);
+      proyectos.getAllProyects(
+        function(err, proyectosDoc){
+          if(err){
+            res.status(500).json({"error":"No se pudo obtener los proyectos"});
+          }else{
+            res.status(200).json(proyectosDoc);
+          }
+        }
+      );
+    });
+
+    router.post('/newuser',function(req,res,next){
+      res.json(req.body);
     });
     return router;
 };
