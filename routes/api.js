@@ -3,6 +3,7 @@ var router = express.Router();
 var validator = require('./validator.js');
 var dummyData = require('../models/dummyData.js');
 var Proyectos = require('../models/proyectos.model.js');
+var Usuarios = require('../models/usuarios.model.js');
 module.exports = function(db) {
 
     //HTTP STATUS CHEAT
@@ -54,6 +55,7 @@ module.exports = function(db) {
       proyectos.getAllProyects(
         function(err, proyectosDoc){
           if(err){
+            console.log(err);
             res.status(500).json({"error":"No se pudo obtener los proyectos"});
           }else{
             res.status(200).json(proyectosDoc);
@@ -61,9 +63,21 @@ module.exports = function(db) {
         }
       );
     });
-
+    var usuariosModel = new Usuarios(db);
     router.post('/newuser',function(req,res,next){
-      res.json(req.body);
+      var newUser = {"correo":req.body.txtEmail,
+                     "password":req.body.txtPswd};
+      usuariosModel.nuevoUsuario(newUser,
+        function(err, id){
+          if(err){
+            res.status(500).json({"error":"No se pudo Guardar Usuario"});
+          }else{
+            //req.session.userid= id;
+            res.status(200).json(id);
+          }
+
+        }
+      );
     });
     return router;
 };
